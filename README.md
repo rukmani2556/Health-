@@ -1,79 +1,57 @@
-# Temporal Retweet Prediction
+# Healthcare DApp 
 
-## Objective
+## Description
+The promise of blockchain has widespread implications for stakeholders in the healthcare ecosystem. Capitalizing on this technology has the potential to connect fragmented systems to generate insights and to better assess the value of care. In the long term, a nationwide blockchain network for electronic medical records may improve efficiencies and support better health outcomes for patients.
 
-- Build a model that uses textual data as well as the author's social features to predict the potential influence of tweets, as
-measured by their retweet counts
-- Predict retweet count each hour for a duration of 72 hours
+1. Distributed framework for patient digital identities, which uses private and public blockchains secured through cryptography, creates a singular, more secure method of protecting patient identity. 
 
-**Note:** It's a regression based problem.
+2. Each patients data like previous medical reports , information about major diseases and allergies will be stored in these blockchains. 
 
-## Get Started
+3. Smart contracts create a consistent, rule-based method for accessing patient data that can be permissioned to selected health organizations.
 
-The model is a modified version of [Retweet Wars](https://www.cs.unc.edu/~mbansal/papers/retweetwars-wacv18.pdf)
+4. Insurance companies will define their conditions for getting accepted and the points not covered by the company . Depending on these conditions and relating those with the patients data insurance will be accepted or rejected .
 
-Go through the [report](https://github.com/sagarjinde/Tweet-Popularity-Prediction/blob/master/report.pdf) for detailed explanation of the model
+## Functions
+1. Four entities can sign up in our Healthcare DApp - Patient, Doctor, Insurance-Company, Chemist
 
-#### Model while training:
+2. The Complete data of a patient is linked to his/her Aadhar Card. 
 
-![Training Model](https://github.com/sagarjinde/Tweet-Popularity-Prediction/blob/master/figs/train_fig.png)
+3. The previous records of the Patient cannot be viewed without his/her approval, Only Doctors can view the Patient's basic Medical Info in case of emergency.
 
-#### Model while testing:
+## Use case diagram link 
+<a href="https://drive.google.com/open?id=14kzH1gJpAuNz15HFI496wV_5edvLcLgY">Link to Use-Case image</a>
 
-![Testing Model](https://github.com/sagarjinde/Tweet-Popularity-Prediction/blob/master/figs/test_fig.png)
+## Technology stack / technology used ( Very Detailed )
+1. Solidity - To Build The Blockchain.
 
-Methodology Explained (video) :- https://www.youtube.com/watch?v=albemFlWzBI
+2. Truffle - To migrate contracts on host.
 
-## Running the code
+3. ReactJS - To build the Front-End.
 
-`Python version: 3.6.8`
+4. Web3 - To connect Solidity to User Interface.
 
-### Create a virtual environment (Recommended but optional)
-Install virtualenv  : `sudo apt-get install virtualenv` </br>
-Create virtualenv   : `virtualenv --system-site-packages -p python3 ./venv` </br>
-Activate virtualenv : `source venv/bin/activate` </br>
+5. MetaMask - To allow users to run Ethereum DApp in the browser.
 
-### Install Requirements
-Run `pip3 install -r requirements.txt`
+languages, frameworks, libraries etc. with their need & purpose
+<a href="https://drive.google.com/open?id=1T3EwNbwruCJioGM-7HgeXvzXxDaaU4wN">Link to Architecture image</a>
 
-**Note:** If you get `ModuleNotFoundError: No module named 'matplotlib._path'` error, run `pip3 install --upgrade matplotlib`
+## Limitations
+There should be a Authority who gives access rights to users
 
-### How to predict retween count for your tweet
-Run `python predict_my_retweet.py` and enter 
-- tweet
-- friends_count
-- followers_count
-- account_age
-- total_tweet_count
-- favourited_tweet_count 
+## Future Aspects
+1. For Storing larger data files, we will use off-chain data storing on cloud servers using encryption, whose key will be stored in the blockchain and will be unique.
 
-### How to train model 
-- Download pre-trained twitter word embedding from https://nlp.stanford.edu/projects/glove/
-- Create word embedding vectors of 100-dimension for your tweet dataset by using code specified in https://github.com/stanfordnlp/GloVe and name it `custom_WE.txt`. </br>
-   **Note:** We have created corona specific glove embedding called `custom_WE.txt`, so if you just want to test run the code, you DON'T have to 
-   create new coutom word embedding.
-- Run `python warm_up_lstm.py` to warm up the LSTM. This will create encoder model which will be saved in `/saved_models` and will be named 
-   `encoder_model.h5`
-- Run `python warm_up_drnn.py` to warm up the dynamic RNN. This will create decoder model which will be saved in `/saved_models` and will be 
-   named `decoder_model.h5`
-- Run `python end-to-end.py` to train the full model from end to end. This will create full model which will be saved in `/saved_models` and 
-   will be named `final_model.h5`
+2. For Governments of various countries, this DApp will create direct passage between the true beneficiaries and Government. This will in turn result in good utilization of resources.
 
-## Custom dataset
+## github project link
+<a href="https://github.com/rsd511/HealthBuddy-DApp">Link to Github Repo</a>
 
-### Create keywords
-Create a file named `keywords.txt` and enter keywords related to tweets that you want to extract.
+## Team Code  
+swapnilshinde2000867
 
-### Make alteast 2 Twitter developer accounts
-Developer accounts are required in order to collect data.
+## Contact info ( emailid - github id )
+Rahul Sawantdesai - rahul.sawant17@siesgst.ac.in  
+Swapnil Satish Shinde - swapnil.satish17@siesgst.ac.in  
+Shambhavi Sudarsan - shambhavi.sudarsan17@siesgst.ac.in  
 
-### Collect user info whose tweet match any one of the keywords
-Run `extract_tweets.py`. Once run, it will collect 1500 tweets according to keywords. I added an additional condition that the user should 
-have atleast 100 followers so that there is a greater change of not getting all 0's in `temporal_retweet_count`.
 
-### Get number of retweets each hour
-Run `get_retweet_count.py` to get the retweet count of above 1500 tweets. </br>
-**Note:** This will give only the retweet count at the time you run this code. </br>
-
-If you want it to run each hour automatically, use cron. </br>
-**Note:** If the tweet is deleted, then NULL is added to csv. </br>
